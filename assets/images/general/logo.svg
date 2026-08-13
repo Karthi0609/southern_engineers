@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="Company mark">
+<path d="M32 4 L54 17 L54 43 L32 56 L10 43 L10 17Z" fill="#F6A31B"/>
+<path d="M32 12 L47 21 L47 39 L32 48 L17 39 L17 21Z" fill="#0E1E33"/>
+<rect x="20" y="27" width="24" height="9" rx="1.5" fill="#F6A31B"/>
+<rect x="29" y="16" width="6" height="32" rx="2" fill="#F6A31B"/>
+<circle cx="32" cy="31.5" r="3.4" fill="#0E1E33"/>
+</svg>

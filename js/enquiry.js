@@ -1,6 +1,6 @@
 /* ============================================================
-   enquiry.js — turns a requirement into a WhatsApp message,
-   an email, or a phone call. No backend involved.
+   enquiry.js — turns a requirement into a WhatsApp message
+   or a phone call. No backend involved.
    ============================================================ */
 (function () {
   'use strict';
@@ -43,12 +43,6 @@
   function waLink(text) {
     return 'https://wa.me/' + String(NUMBER).replace(/[^\d]/g, '') +
            '?text=' + encodeURIComponent(text);
-  }
-
-  function mailLink(subject, body) {
-    return 'mailto:' + SITE.email +
-           '?subject=' + encodeURIComponent(subject) +
-           '&body=' + encodeURIComponent(body);
   }
 
   /* ---------- validation ---------- */
@@ -102,37 +96,27 @@
     };
   }
 
-  function send(mode, formEl, statusEl, subject, kind, fields) {
+  function send(formEl, statusEl, subject, kind, fields) {
     if (!validate(formEl)) {
       statusEl.textContent = 'Check the highlighted fields and try again.';
       statusEl.className = 'form-status is-error';
       return;
     }
     var text = buildMessage(subject, kind, fields);
-    var href = mode === 'email'
-      ? mailLink('Enquiry: ' + subject, text)
-      : waLink(text);
-
     statusEl.className = 'form-status is-ok';
-    statusEl.textContent = mode === 'email'
-      ? 'Opening your email app with the details filled in.'
-      : 'Opening WhatsApp with your enquiry.';
-    window.open(href, mode === 'email' ? '_self' : '_blank', 'noopener');
+    statusEl.textContent = 'Opening WhatsApp with your enquiry.';
+    window.open(waLink(text), '_blank', 'noopener');
   }
 
   function init() {
-    /* modal submit + email */
+    /* modal submit */
     var mForm = document.getElementById('enquiryForm');
     if (mForm) {
       var mStatus = document.getElementById('modalStatus');
       mForm.addEventListener('submit', function (e) {
         e.preventDefault();
         var s = modalSubject();
-        send('whatsapp', mForm, mStatus, s.subject, s.kind, modalFields());
-      });
-      document.getElementById('modalEmailBtn').addEventListener('click', function () {
-        var s = modalSubject();
-        send('email', mForm, mStatus, s.subject, s.kind, modalFields());
+        send(mForm, mStatus, s.subject, s.kind, modalFields());
       });
     }
 
@@ -154,10 +138,7 @@
       };
       cForm.addEventListener('submit', function (e) {
         e.preventDefault();
-        send('whatsapp', cForm, cStatus, contactSubject(), 'general', contactFields());
-      });
-      document.getElementById('contactEmailBtn').addEventListener('click', function () {
-        send('email', cForm, cStatus, contactSubject(), 'general', contactFields());
+        send(cForm, cStatus, contactSubject(), 'general', contactFields());
       });
     }
 

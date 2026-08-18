@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
 
-# Replace www.southernengineers.example with the live domain before going live
-Sitemap: https://www.southernengineers.example/sitemap.xml
+Sitemap: https://southernengineers.online/sitemap.xml

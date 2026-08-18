@@ -27,7 +27,7 @@ const SITE = {
   pincode: '627401',
   gstin: '33AAWIPM7339L1Z2',
   hours: '',
-  domain: 'www.southernengineers.example'
+  domain: 'southernengineers.online'
 };
 
 /* Kept as a separate constant because the brief asks for it by name. */
